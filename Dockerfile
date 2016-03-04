@@ -1,8 +1,11 @@
-FROM node:0.12
+FROM node:latest
 
 # Install gem sass for  grunt-contrib-sass
 RUN apt-get update -qq && apt-get install -y build-essential
 RUN apt-get install -y ruby
+RUN gem sources --remove https://rubygems.org/
+RUN gem sources -a https://ruby.taobao.org/
+RUN gem sources -l
 RUN gem install sass
 
 WORKDIR /home/mean
