@@ -1,9 +1,9 @@
 'use strict';
 
 var path = require('path'),
-    mongoose = require('mongoose'),
-    Task = mongoose.model('Task'),
-    errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+  mongoose = require('mongoose'),
+  Task = mongoose.model('Task'),
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 exports.list = function(req, res) {
   Task.find({}, function(err, tasks) {

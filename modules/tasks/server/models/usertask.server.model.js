@@ -1,9 +1,9 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    User = mongoose.model('User'),
-    Task = mongoose.model('Task');
+  Schema = mongoose.Schema,
+  // User = mongoose.model('User'),
+  Task = mongoose.model('Task');
 
 /**
  * User value
@@ -49,7 +49,7 @@ var UserTaskSchema = new Schema({
 
 // Get tasks belongs to a user
 UserTaskSchema.statics.findTasksByUserEmail = function(email, callback) {
-}
+};
 
 mongoose.model('UserTask', UserTaskSchema);
 
