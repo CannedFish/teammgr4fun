@@ -26,6 +26,11 @@ var TaskSchema = new Schema({
     trim: true,
     required: 'Please fill in a taskname'
   },
+  createdBy: {
+    type: String,
+    trim: true,
+    default: 'anonymity'
+  },
   projectBelongs: {
     type: String,
     trim: true,
@@ -53,11 +58,6 @@ var TaskSchema = new Schema({
     default: 'Not started'
   }
 });
-
-TaskSchema.statics.findTaskByID = function(id, callback) {
-  var self = this;
-  self.findOne({_id: id}, callback);
-}
 
 mongoose.model('Task', TaskSchema);
 
