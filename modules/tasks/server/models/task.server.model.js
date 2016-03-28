@@ -54,3 +54,10 @@ var TaskSchema = new Schema({
   }
 });
 
+TaskSchema.statics.findTaskByID = function(id, callback) {
+  var self = this;
+  self.findOne({_id: id}, callback);
+}
+
+mongoose.model('Task', TaskSchema);
+
