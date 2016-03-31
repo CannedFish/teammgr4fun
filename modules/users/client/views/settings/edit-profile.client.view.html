@@ -35,7 +35,7 @@
           <label for="skills">Skills</label>
           <div id="skills" ng-repeat="skill in user.skills">
             <input type="text" class="form-control" style="width:70%;display:inline" ng-model="user.skills[$index].skillName" placeholder="Skill Name" lowercase>
-            <select style="width:27%"ng-model="user.skills[$index].exp">
+            <select class="form-control" style="width:29%;display:inline" ng-model="user.skills[$index].exp">
               <option ng-repeat="exp in exps" value="{{exp}}">{{exp}}</option>
             </select>
           </div>
