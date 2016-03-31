@@ -25,5 +25,16 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
         $scope.error = response.data.message;
       });
     };
+
+    // for skills
+    $scope.exps = ['Beginner', 'General', 'Skilled', 'Proficiency'];
+    if(typeof($scope.user.skills) === 'undefined' || $scope.user.skills.length === 0) {
+      $scope.user.skills = [{skillName: '', exp: ''}];
+    }
+
+    // for project experience
+    if(typeof($scope.user.projectExp) === 'undefined' || $scope.user.projectExp.length === 0) {
+      $scope.user.projectExp = [{projectName: '', description: '', skillUsed: []}];
+    }
   }
 ]);

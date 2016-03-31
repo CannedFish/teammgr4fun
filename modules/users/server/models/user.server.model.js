@@ -25,6 +25,42 @@ var validateLocalStrategyEmail = function (email) {
 };
 
 /**
+ * Skill Schema
+ */
+var SkillSchema = new Schema({
+  skillName: {
+    type: String,
+    trim: true,
+    required: 'Please fill in a skill name'
+  },
+  exp: {
+    type: String,
+    trim: true,
+    enum: ['Beginner', 'General', 'Skilled', 'Proficiency']
+  }
+});
+
+/**
+ * Project Experience Schema
+ */
+var ProjectExpSchema = new Schema({
+  projectName: {
+    type: String,
+    trim: true,
+    required: 'Please fill in a project name'
+  },
+  description: {
+    type: String,
+    trim: true,
+    required: 'Please fill in some description'
+  },
+  skillUsed: [{
+    type: String,
+    trim: true
+  }]
+});
+
+/**
  * User Schema
  */
 var UserSchema = new Schema({
@@ -46,7 +82,7 @@ var UserSchema = new Schema({
   },
   email: {
     type: String,
-    unique: true,
+    unique: 'Email already exists',
     lowercase: true,
     trim: true,
     default: '',
@@ -97,7 +133,9 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
-  }
+  },
+  skills: [SkillSchema],
+  projectExp: [ProjectExpSchema]
 });
 
 /**
