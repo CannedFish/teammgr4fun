@@ -28,13 +28,27 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
 
     // for skills
     $scope.exps = ['Beginner', 'General', 'Skilled', 'Proficiency'];
-    if(typeof($scope.user.skills) === 'undefined' || $scope.user.skills.length === 0) {
-      $scope.user.skills = [{skillName: '', exp: ''}];
-    }
+    $scope.add_a_skill = function() {
+      if(typeof $scope.user.skills === 'undefined')
+        $scope.user.skills = [];
+      $scope.user.skills.push({skillName: '', exp: 'Beginner'});
+    };
+    $scope.remove_a_skill = function($idx) {
+      $scope.user.skills.splice($idx, 1);
+    };
 
     // for project experience
-    if(typeof($scope.user.projectExp) === 'undefined' || $scope.user.projectExp.length === 0) {
-      $scope.user.projectExp = [{projectName: '', description: '', skillUsed: []}];
-    }
+    // if(typeof($scope.user.projectExp) === 'undefined' || $scope.user.projectExp.length === 0) {
+      // $scope.user.projectExp = [{projectName: '', description: '', skillUsed: []}];
+    // }
+    $scope.add_a_projexp = function() {
+      if(typeof $scope.user.projectExp === 'undefined')
+        $scope.user.projectExp = [];
+      $scope.user.projectExp.push({projectName: '', description: '', skillUsed: []});
+    };
+    $scope.remove_a_projexp = function($idx) {
+      $scope.user.projectExp.splice($idx, 1);
+    };
+
   }
 ]);
