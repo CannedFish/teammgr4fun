@@ -1,0 +1,70 @@
+<div class="modal" id="addTask" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">
+          &times;
+        </button>
+        <h4 class="modal-title" id="addTaskLabel">
+          Create a New Task
+        </h4>
+      </div>
+      <div class="modal-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Task Name</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="taskName" ng-disabled="!edit" placeholder="Task Name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Created By</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="createdBy" ng-disabled="!edit" placeholder="Created By">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Project</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="project" ng-disabled="!edit" placeholder="Project">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="description" ng-disabled="!edit" placeholder="Description">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Value</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="value" ng-disabled="!edit" placeholder="Value">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Pluses</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="pluses" ng-disabled="!edit" placeholder="Pluses">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Task Type</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="taskType" ng-disabled="!edit" placeholder="Task Type">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Status</label>
+            <div class="col-sm-10">
+              <input type='text' ng-model="status" ng-disabled="!edit" placeholder="Status">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="$hide()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="createTask()">Commit</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,7 +31,7 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
     $scope.add_a_skill = function() {
       if(typeof $scope.user.skills === 'undefined')
         $scope.user.skills = [];
-      $scope.user.skills.push({skillName: '', exp: 'Beginner'});
+      $scope.user.skills.push({ skillName: '', exp: 'Beginner' });
     };
     $scope.remove_a_skill = function($idx) {
       $scope.user.skills.splice($idx, 1);
@@ -44,7 +44,7 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
     $scope.add_a_projexp = function() {
       if(typeof $scope.user.projectExp === 'undefined')
         $scope.user.projectExp = [];
-      $scope.user.projectExp.push({projectName: '', description: '', skillUsed: []});
+      $scope.user.projectExp.push({ projectName: '', description: '', skillUsed: [] });
     };
     $scope.remove_a_projexp = function($idx) {
       $scope.user.projectExp.splice($idx, 1);
