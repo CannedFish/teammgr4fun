@@ -1,9 +1,15 @@
-'use strict';
+(function () {
+  'use strict';
 
-angular.module('core').controller('HomeController', ['$scope', '$http', '$uibModal', 'Authentication',
-  function ($scope, $http, $uibModal, Authentication) {
-    // This provides Authentication context.
-    $scope.authentication = Authentication;
+  angular
+    .module('core')
+    .controller('HomeController', HomeController);
+
+  HomeController.$inject = ['$scope', '$http', '$uibModal', 'Authentication'];
+
+  function HomeController($scope, $http, $uibModal, Authentication) {
+    var vm = this;
+    vm.authentication = Authentication;
 
     $http.get('/api/tasks').success(function(response) {
       $scope.tasks = response;
@@ -44,4 +50,4 @@ angular.module('core').controller('HomeController', ['$scope', '$http', '$uibMod
       createTaskModal.$promise.then(createTaskModal.show);
     };
   }
-]);
+}());
