@@ -7,7 +7,7 @@ var path = require('path'),
 
 exports.list = function(req, res) {
   Task.find({}, function(err, tasks) {
-    if(err) {
+    if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -29,7 +29,7 @@ exports.create = function(req, res) {
     status: req.body.status
   });
   task.save(function(err) {
-    if(err) {
+    if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });

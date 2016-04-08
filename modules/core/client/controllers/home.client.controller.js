@@ -41,13 +41,14 @@
     };
 
     $scope.edit = true;
-    var createTaskModal = $uibModal.open({
-      scope: $scope,
-      templateUrl: "modules/tasks/client/views/create_task.client.view.html",
-      show: false
-    });
     $scope.showModal = function() {
-      createTaskModal.$promise.then(createTaskModal.show);
+      var createTaskModal = $uibModal.open({
+        scope: $scope,
+        templateUrl: 'modules/tasks/client/views/create_task.client.view.html',
+        controller: 'CreateTaskController',
+        show: false
+      });
+      // createTaskModal.result.then();
     };
   }
 }());

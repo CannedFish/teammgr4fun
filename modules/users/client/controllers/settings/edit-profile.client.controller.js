@@ -33,12 +33,12 @@
       }, function (response) {
         vm.error = response.data.message;
       });
-    };
+    }
 
     // for skills
     $scope.exps = ['Beginner', 'General', 'Skilled', 'Proficiency'];
     $scope.add_a_skill = function() {
-      if(typeof $scope.user.skills === 'undefined')
+      if (typeof $scope.user.skills === 'undefined')
         $scope.user.skills = [];
       $scope.user.skills.push({ skillName: '', exp: 'Beginner' });
     };
@@ -48,7 +48,7 @@
 
     // for project experience
     $scope.add_a_projexp = function() {
-      if(typeof $scope.user.projectExp === 'undefined')
+      if (typeof $scope.user.projectExp === 'undefined')
         $scope.user.projectExp = [];
       $scope.user.projectExp.push({ projectName: '', description: '', skillUsed: [] });
     };
