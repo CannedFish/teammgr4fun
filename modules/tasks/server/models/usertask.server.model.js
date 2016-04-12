@@ -9,9 +9,9 @@ var mongoose = require('mongoose'),
  * User value
  */
 var UserValue = new Schema({
-  userID: {
-    type: String,
-    trim: true,
+  user: {
+    type: Schema.ObjectId,
+    ref: 'User',
     required: 'Please fill in a user ID'
   },
   valueOwned: {
@@ -24,12 +24,12 @@ var UserValue = new Schema({
  * UserTask Schema
  */
 var UserTaskSchema = new Schema({
-  taskID: {
-    type: String,
-    trim: true,
+  task: {
+    type: Schema.ObjectId,
+    ref: 'Task',
     required: 'Please fill in a task ID'
   },
-  userID: {
+  resolvers: {
     type: [UserValue],
     required: true
   },

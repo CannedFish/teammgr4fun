@@ -54,7 +54,7 @@ var TaskSchema = new Schema({
   status: {
     type: String,
     trim: true,
-    enum: ['Not started', 'In progress', 'Pause', 'Completed', 'Terminated'],
+    enum: ['', 'Not started', 'In progress', 'Pause', 'Completed', 'Terminated'],
     default: 'Not started'
   }
 });

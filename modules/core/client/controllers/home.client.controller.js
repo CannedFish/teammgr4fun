@@ -15,32 +15,6 @@
       $scope.tasks = response;
     });
 
-    // For Create a task
-    $scope.createTask = function() {
-      var data = {
-        taskName: $scope.taskName,
-        createdBy: $scope.createdBy,
-        projectBelongs: $scope.project,
-        description: $scope.description,
-        value: $scope.value,
-        pluses: $scope.pluses,
-        taskType: $scope.taskType,
-        status: $scope.status
-      };
-      $http.post('/api/task/create', data).success(function(response) {
-        $scope.tasks.push(response);
-        $scope.taskName = '';
-        $scope.createdBy = '';
-        $scope.project = '';
-        $scope.description = '';
-        $scope.value = '';
-        $scope.pluses = '';
-        $scope.taskType = '';
-        $scope.status = '';
-      });
-    };
-
-    $scope.edit = true;
     $scope.showModal = function() {
       var createTaskModal = $uibModal.open({
         scope: $scope,
@@ -48,7 +22,23 @@
         controller: 'CreateTaskController',
         show: false
       });
-      // createTaskModal.result.then();
+
+      createTaskModal.result.then(function (task) {
+        console.log(task);
+        $http.post('/api/task/create', task).success(function(response) {
+          $scope.tasks.push(response);
+          $scope.taskName = '';
+          $scope.createdBy = '';
+          $scope.project = '';
+          $scope.description = '';
+          $scope.value = '';
+          $scope.pluses = '';
+          $scope.taskType = '';
+          $scope.status = '';
+        });
+      }, function () {
+        console.log('Modal dismissed at: ' + new Date());
+      });
     };
   }
 }());

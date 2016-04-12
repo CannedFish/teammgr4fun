@@ -8,15 +8,15 @@
 
   CreateTaskController.$inject = ['$scope'];
 
-  function CreateTaskController($scope, $uibModalInstance) {
+  function CreateTaskController($scope) {
     var vm = this;
 
     $scope.ok = function () {
-      $uibModalInstance.close();
+      $scope.$close($scope.task);
     };
 
     $scope.cancel = function () {
-      $uibModalInstance.dismiss('cancel');
+      $scope.$dismiss('cancel');
     };
   }
 }());
