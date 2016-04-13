@@ -5,7 +5,7 @@
     .module('users')
     .controller('EditProfileController', EditProfileController);
 
-  EditProfileController.$inject = ['$scope', '$http', '$location', 'Users', 'Authentication'];
+  EditProfileController.$inject = ['$scope', '$http', '$location', 'UsersService', 'Authentication'];
 
   function EditProfileController($scope, $http, $location, Users, Authentication) {
     var vm = this;
@@ -38,22 +38,22 @@
     // for skills
     $scope.exps = ['Beginner', 'General', 'Skilled', 'Proficiency'];
     $scope.add_a_skill = function() {
-      if (typeof $scope.user.skills === 'undefined')
-        $scope.user.skills = [];
-      $scope.user.skills.push({ skillName: '', exp: 'Beginner' });
+      if (typeof vm.user.skills === 'undefined')
+        vm.user.skills = [];
+      vm.user.skills.push({ skillName: '', exp: 'Beginner' });
     };
     $scope.remove_a_skill = function($idx) {
-      $scope.user.skills.splice($idx, 1);
+      vm.user.skills.splice($idx, 1);
     };
 
     // for project experience
     $scope.add_a_projexp = function() {
-      if (typeof $scope.user.projectExp === 'undefined')
-        $scope.user.projectExp = [];
-      $scope.user.projectExp.push({ projectName: '', description: '', skillUsed: [] });
+      if (typeof vm.user.projectExp === 'undefined')
+        vm.user.projectExp = [];
+      vm.user.projectExp.push({ projectName: '', description: '', skillUsed: [] });
     };
     $scope.remove_a_projexp = function($idx) {
-      $scope.user.projectExp.splice($idx, 1);
+      vm.user.projectExp.splice($idx, 1);
     };
 
   }

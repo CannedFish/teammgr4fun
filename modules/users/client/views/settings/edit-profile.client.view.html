@@ -36,9 +36,9 @@
           <div id="skills" class="text-center" style="margin-bottom:6px">
             <button class="btn btn-info btn-xs" ng-click="add_a_skill()">Add a skill</button>
           </div>
-          <div ng-repeat="skill in user.skills">
-            <input type="text" class="form-control" style="width:63.5%;display:inline" ng-model="user.skills[$index].skillName" placeholder="Skill Name" lowercase>
-            <select class="form-control" style="width:29%;display:inline" ng-model="user.skills[$index].exp">
+          <div ng-repeat="skill in vm.user.skills">
+            <input type="text" class="form-control" style="width:63.5%;display:inline" ng-model="vm.user.skills[$index].skillName" placeholder="Skill Name" lowercase>
+            <select class="form-control" style="width:29%;display:inline" ng-model="vm.user.skills[$index].exp">
               <option ng-repeat="exp in exps" value="{{exp}}" ng-selected="exp == skill.exp">{{exp}}</option>
             </select>
             <button class="btn btn-default btn-xs" ng-click="remove_a_skill($index)">
@@ -51,12 +51,12 @@
           <div id="projexps" class="text-center" style="margin-bottom:6px">
             <button class="btn btn-info btn-xs" ng-click="add_a_projexp()">Add a project experience</button>
           </div>
-          <div ng-repeat="projexp in user.projectExp">
-            <input type="text" class="form-control" style="width:93%;display:inline" ng-model="user.projectExp[$index].projectName" placeholder="Project Name">
+          <div ng-repeat="projexp in vm.user.projectExp">
+            <input type="text" class="form-control" style="width:93%;display:inline" ng-model="vm.user.projectExp[$index].projectName" placeholder="Project Name">
             <button class="btn btn-default btn-xs" ng-click="remove_a_projexp($index)">
               <span class="glyphicon glyphicon-remove-sign"></span>
             </button>
-            <textarea class="form-control" rows="7" ng-model="user.projectExp[$index].description" placeholder="Project Description"></textarea>
+            <textarea class="form-control" rows="7" ng-model="vm.user.projectExp[$index].description" placeholder="Project Description"></textarea>
           </div>
         </div>
         <div class="text-center form-group">
