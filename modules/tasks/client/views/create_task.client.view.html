@@ -13,32 +13,32 @@
       <input class="form-control" id="taskname" type='text' ng-model="task.taskName" placeholder="Task Name">
     </div>
     <div class="form-group">
-      <label for="createdby">Created By</label>
-      <input class="form-control" id="createdby" type='text' ng-model="task.createdBy" placeholder="Created By">
-    </div>
-    <div class="form-group">
       <label for="project">Project</label>
-      <input class="form-control" id="project" type='text' ng-model="task.project" placeholder="Project">
+      <input class="form-control" id="project" type='text' ng-model="task.projectBelongs" placeholder="Project belongs to">
     </div>
     <div class="form-group">
       <label for="description">Description</label>
-      <input class="form-control" id="description" type='text' ng-model="task.description" placeholder="Description">
+      <textarea class="form-control" id="description" rows="3" ng-model="task.description" placeholder="Description"></textarea>
     </div>
     <div class="form-group">
       <label for="value">Value</label>
-      <input class="form-control" id="value" type='text' ng-model="task.value" placeholder="Value">
+      <input class="form-control" id="value" type='text' ng-model="task.value" placeholder="Task Value">
     </div>
     <div class="form-group">
       <label for="pluses">Pluses</label>
-      <input class="form-control" id="pluses" type='text' ng-model="task.pluses" placeholder="Pluses">
+      <div id="pluses" class="text-center" style="margin-bottom:6px">
+        <button class="btn btn-info btn-xs" ng-click="add_a_plus()">Add a plus</button>
+      </div>
+      <div ng-repeat="plus in task.pluses">
+        <input class="form-control" type='text' style="width:80%;display:inline" ng-model="task.pluses[$index].description" placeholder="Description">
+        <input class="form-control" type='text' style="width:19%;display:inline" ng-model="task.pluses[$index].value" placeholder="Value">
+      </div>
     </div>
     <div class="form-group">
       <label for="tasktype">Task Type</label>
-      <input class="form-control" id="tasktype" type='text' ng-model="task.taskType" placeholder="Task Type">
-    </div>
-    <div class="form-group">
-      <label for="status">Status</label>
-      <input class="form-control" id="status" type='text' ng-model="task.status" placeholder="Status">
+      <select class="form-control" id="tasktype" ng-model="task.taskType">
+        <option ng-repeat="type in types" value="{{type}}">{{type}}</option>
+      </select>
     </div>
   </form>
 </div>

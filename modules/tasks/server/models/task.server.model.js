@@ -27,9 +27,9 @@ var TaskSchema = new Schema({
     required: 'Please fill in a taskname'
   },
   createdBy: {
-    type: String,
-    trim: true,
-    default: 'anonymity'
+    type: Schema.ObjectId,
+    ref: 'User',
+    required: 'Please fill in a user ID'
   },
   projectBelongs: {
     type: String,

@@ -23,6 +23,7 @@
           scope: $scope,
           templateUrl: 'modules/tasks/client/views/create_task.client.view.html',
           controller: 'CreateTaskController',
+          controllerAs: 'vm',
           show: false
         });
 

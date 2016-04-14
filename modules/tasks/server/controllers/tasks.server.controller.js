@@ -3,10 +3,11 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Task = mongoose.model('Task'),
+  User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 exports.list = function(req, res) {
-  Task.find({}, function(err, tasks) {
+  Task.find().populate('createdBy', 'username').exec(function(err, tasks) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
@@ -20,7 +21,7 @@ exports.list = function(req, res) {
 exports.create = function(req, res) {
   var task = new Task({
     taskName: req.body.taskName,
-    // createdBy: user.id,
+    createdBy: req.body.createdBy,
     projectBelongs: req.body.projectBelongs,
     description: req.body.description,
     value: req.body.value,
@@ -35,7 +36,16 @@ exports.create = function(req, res) {
       });
     }
 
-    res.json(task);
+    User.findById(task.createdBy, function(err, user) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+
+      task.createdBy = user.username;
+      res.json(task);
+    });
   });
 };
 
