@@ -14,6 +14,7 @@ exports.list = function(req, res) {
       });
     }
 
+    // tasks.createdBy = tasks.createdBy.username;
     res.json(tasks);
   });
 };
@@ -29,23 +30,17 @@ exports.create = function(req, res) {
     taskType: req.body.taskType,
     status: req.body.status
   });
-  task.save(function(err) {
+
+  task.save().then(function() {
+    return User.populate(task, { path: 'createdBy', select: 'username' });
+  }).then(function(task) {
+    res.json(task);
+  }).then(null, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-
-    User.findById(task.createdBy, function(err, user) {
-      if (err) {
-        return res.status(400).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      }
-
-      task.createdBy = user.username;
-      res.json(task);
-    });
   });
 };
 

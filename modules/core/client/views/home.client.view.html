@@ -16,7 +16,7 @@
     <tbody>
       <tr ng-repeat="task in tasks">
         <td>{{ task.taskName }}</td>
-        <td>{{ task.createdBy }}</td>
+        <td>{{ task.createdBy.username }}</td>
         <td>{{ task.projectBelongs }}</td>
         <td>{{ task.description }}</td>
         <td>{{ task.value }}</td>

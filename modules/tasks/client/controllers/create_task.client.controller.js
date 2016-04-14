@@ -23,13 +23,12 @@
 
     $scope.task = {
       status: 'Not started',
-      createdBy: vm.user._id
+      createdBy: vm.user._id,
+      pluses: []
     };
     $scope.types = ['code', 'document'];
 
     $scope.add_a_plus = function () {
-      if (typeof $scope.task.pluses === 'undefined')
-        $scope.task.pluses = [];
       $scope.task.pluses.push({
         description: '',
         value: 0
