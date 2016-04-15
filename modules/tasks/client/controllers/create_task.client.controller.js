@@ -1,4 +1,3 @@
-// implement the controller for create task modal
 (function () {
   'use strict';
 

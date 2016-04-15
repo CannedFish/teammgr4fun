@@ -1,0 +1,20 @@
+<section>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Project</th>
+        <th>Task Type</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in vm.tasks" ng-click="vm.detail($index)" role="button">
+        <td>{{ task.taskName }}</td>
+        <td>{{ task.projectBelongs }}</td>
+        <td>{{ task.taskType }}</td>
+        <td>{{ task.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

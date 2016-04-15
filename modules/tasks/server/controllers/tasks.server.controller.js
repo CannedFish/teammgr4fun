@@ -14,7 +14,19 @@ exports.list = function(req, res) {
       });
     }
 
-    // tasks.createdBy = tasks.createdBy.username;
+    res.json(tasks);
+  });
+};
+
+exports.listByAuthor = function(req, res) {
+  var userID = req.params.userID;
+  Task.find({ createdBy: userID }).exec(function(err, tasks) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
     res.json(tasks);
   });
 };
