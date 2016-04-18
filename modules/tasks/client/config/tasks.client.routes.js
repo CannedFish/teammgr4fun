@@ -16,7 +16,7 @@
       })
       .state('mine.committed', {
         url: '/committed',
-        templateUrl: 'modules/tasks/client/views/committed-tasks.client.view.html',
+        templateUrl: 'modules/tasks/client/views/my-tasks/committed-tasks.client.view.html',
         controller: 'CommittedTasksController',
         controllerAs: 'vm',
         data: {
@@ -25,7 +25,7 @@
       })
       .state('mine.handling', {
         url: '/handling',
-        templateUrl: 'modules/tasks/client/views/handling-tasks.client.view.html',
+        templateUrl: 'modules/tasks/client/views/my-tasks/handling-tasks.client.view.html',
         controller: 'HandlingTasksController',
         controllerAs: 'vm',
         data: {
@@ -34,7 +34,7 @@
       })
       .state('mine.solved', {
         url: '/solved',
-        templateUrl: 'modules/tasks/client/views/solved-tasks.client.view.html',
+        templateUrl: 'modules/tasks/client/views/my-tasks/solved-tasks.client.view.html',
         controller: 'SolvedTasksController',
         controllerAs: 'vm',
         data: {
