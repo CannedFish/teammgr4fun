@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="task in vm.tasks" ng-click="vm.detail($index)" role="button">
+      <tr ng-repeat="task in vm.tasks" ng-click="vm.detail($index)" role="button" tooltip-placement="top" uib-tooltip="Click for details">
         <td>{{ task.taskName }}</td>
         <td>{{ task.projectBelongs }}</td>
         <td>{{ task.taskType }}</td>

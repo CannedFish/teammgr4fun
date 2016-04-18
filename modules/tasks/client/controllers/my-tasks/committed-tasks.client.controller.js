@@ -25,7 +25,11 @@
         templateUrl: 'modules/tasks/client/views/modals/task-detail.client.view.html',
         controller: 'TaskDetailController',
         controllerAs: 'vm',
-        show: false
+        resolve: {
+          task: function () {
+            return vm.tasks[idx];
+          }
+        }
       });
     }
   }

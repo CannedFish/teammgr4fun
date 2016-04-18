@@ -1,0 +1,79 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="vm.close()">
+    &times;
+  </button>
+  <h4 class="modal-title" id="addTaskLabel">
+    Task detail
+  </h4>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <label for="taskname">
+        Task Name
+        <span class="glyphicon glyphicon-pencil" role="button" ng-click="vm.edit('taskname')" tooltip-placement="top" uib-tooltip="Edit" ng-show="!vm.editable['taskname']"></span>
+        <span class="glyphicon glyphicon-ok" role="button" ng-click="vm.confirm_edit('taskname')" tooltip-placement="top" uib-tooltip="Confirm" ng-show="vm.editable['taskname']"></span>
+        <span class="glyphicon glyphicon-remove" role="button" ng-click="vm.cancel_edit('taskname')" tooltip-placement="top" uib-tooltip="Cancel" ng-show="vm.editable['taskname']"></span>
+      </label>
+      <input class="form-control" id="taskname" type='text' ng-model="vm.task.taskName" placeholder="Task Name" ng-disabled="!vm.editable['taskname']">
+    </div>
+    <div class="form-group">
+      <label for="project">
+        Project
+        <span class="glyphicon glyphicon-pencil" role="button" ng-click="vm.edit('project')" tooltip-placement="top" uib-tooltip="Edit" ng-show="!vm.editable['project']"></span>
+        <span class="glyphicon glyphicon-ok" role="button" ng-click="vm.confirm_edit('project')" tooltip-placement="top" uib-tooltip="Confirm" ng-show="vm.editable['project']"></span>
+        <span class="glyphicon glyphicon-remove" role="button" ng-click="vm.cancel_edit('project')" tooltip-placement="top" uib-tooltip="Cancel" ng-show="vm.editable['project']"></span>
+      </label>
+      <input class="form-control" id="project" type='text' ng-model="vm.task.projectBelongs" placeholder="Project belongs to" ng-disabled="!vm.editable['project']">
+    </div>
+    <div class="form-group">
+      <label for="description">
+        Description
+        <span class="glyphicon glyphicon-pencil" role="button" ng-click="vm.edit('description')" tooltip-placement="top" uib-tooltip="Edit" ng-show="!vm.editable['description']"></span>
+        <span class="glyphicon glyphicon-ok" role="button" ng-click="vm.confirm_edit('description')" tooltip-placement="top" uib-tooltip="Confirm" ng-show="vm.editable['description']"></span>
+        <span class="glyphicon glyphicon-remove" role="button" ng-click="vm.cancel_edit('description')" tooltip-placement="top" uib-tooltip="Cancel" ng-show="vm.editable['description']"></span>
+      </label>
+      <textarea class="form-control" id="description" rows="3" ng-model="vm.task.description" placeholder="Description" ng-disabled="!vm.editable['description']"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="value">
+        Value
+        <span class="glyphicon glyphicon-pencil" role="button" ng-click="vm.edit('value')" tooltip-placement="top" uib-tooltip="Edit" ng-show="!vm.editable['value']"></span>
+        <span class="glyphicon glyphicon-ok" role="button" ng-click="vm.confirm_edit('value')" tooltip-placement="top" uib-tooltip="Confirm" ng-show="vm.editable['value']"></span>
+        <span class="glyphicon glyphicon-remove" role="button" ng-click="vm.cancel_edit('value')" tooltip-placement="top" uib-tooltip="Cancel" ng-show="vm.editable['value']"></span>
+      </label>
+      <input class="form-control" id="value" type='text' ng-model="vm.task.value" placeholder="Task Value" ng-disabled="!vm.editable['value']">
+    </div>
+    <div class="form-group">
+      <label for="pluses">
+        Pluses
+        <span class="glyphicon glyphicon-pencil" role="button" ng-click="vm.edit('pluses')" tooltip-placement="top" uib-tooltip="Edit" ng-show="!vm.editable['pluses']"></span>
+        <span class="glyphicon glyphicon-ok" role="button" ng-click="vm.confirm_edit('pluses')" tooltip-placement="top" uib-tooltip="Confirm" ng-show="vm.editable['pluses']"></span>
+        <span class="glyphicon glyphicon-remove" role="button" ng-click="vm.cancel_edit('pluses')" tooltip-placement="top" uib-tooltip="Cancel" ng-show="vm.editable['pluses']"></span>
+      </label>
+      <div id="pluses" class="text-center" style="margin-bottom:6px">
+        <button class="btn btn-info btn-xs" ng-click="add_a_plus()" ng-disabled="!vm.editable['pluses']">Add a plus</button>
+      </div>
+      <div ng-repeat="plus in task.pluses">
+        <input class="form-control" type='text' style="width:80%;display:inline" ng-model="vm.task.pluses[$index].description" placeholder="Description" ng-disabled="!vm.editable['pluses']">
+        <input class="form-control" type='text' style="width:19%;display:inline" ng-model="vm.task.pluses[$index].value" placeholder="Value" ng-disabled="!vm.editable['pluses']">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="tasktype">
+        Task Type
+        <span class="glyphicon glyphicon-pencil" role="button" ng-click="vm.edit('tasktype')" tooltip-placement="top" uib-tooltip="Edit" ng-show="!vm.editable['tasktype']"></span>
+        <span class="glyphicon glyphicon-ok" role="button" ng-click="vm.confirm_edit('tasktype')" tooltip-placement="top" uib-tooltip="Confirm" ng-show="vm.editable['tasktype']"></span>
+        <span class="glyphicon glyphicon-remove" role="button" ng-click="vm.cancel_edit('tasktype')" tooltip-placement="top" uib-tooltip="Cancel" ng-show="vm.editable['tasktype']"></span>
+      </label>
+      <select class="form-control" id="tasktype" ng-model="vm.task.taskType" ng-disabled="!vm.editable['tasktype']">
+        <option ng-repeat="type in vm.types" value="{{type}}" ng-selected="type == vm.task.taskType">{{type}}</option>
+      </select>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" ng-click="vm.close()">Close</button>
+  <button type="button" class="btn btn-danger" ng-click="vm.delete()">Delete</button>
+  <button type="button" class="btn btn-primary" ng-click="vm.update()" ng-disabled="!vm.modified">Apply</button>
+</div>

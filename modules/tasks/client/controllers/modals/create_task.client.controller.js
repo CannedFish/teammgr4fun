@@ -33,5 +33,6 @@
         value: 0
       });
     };
+    $scope.rm_a_plus = function (idx) {};
   }
 }());
