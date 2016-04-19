@@ -5,7 +5,7 @@
     .module('tasks')
     .controller('TaskDetailController', TaskDetailController);
 
-  function TaskDetailController($scope, $uibModalInstance, task) {
+  function TaskDetailController($scope, $uibModalInstance, task, $http, $timeout) {
     var vm = this;
 
     vm.task = task;
@@ -16,7 +16,22 @@
     function __update() {
     }
 
+    vm.DELETE = 'Delete';
     function __delete() {
+      if (vm.DELETE === 'Sure?') {
+        $timeout.cancel();
+        $http.delete('/api/task/delete/' + task._id).then(function (response) {
+          $scope.$close({
+            action: 'delete',
+            status: 'ok'
+          });
+        });
+      } else {
+        vm.DELETE = 'Sure?';
+        $timeout(function () {
+          vm.DELETE = 'Delete';
+        }, 5000);
+      }
     }
 
     function __close() {

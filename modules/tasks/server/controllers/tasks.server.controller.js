@@ -58,13 +58,16 @@ exports.create = function(req, res) {
 
 exports.delete = function(req, res) {
   var taskID = req.params.taskID;
-  Task.remove({_id: taskID}, function(err) {
+  Task.remove({ _id: taskID }, function(err) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
     }
-    res.json({ message: 'A task is removed.' });
+    res.json({
+      status: 'ok',
+      message: 'A task is removed.'
+    });
   });
 };
 

@@ -31,6 +31,14 @@
           }
         }
       });
+
+      detailModal.result.then(function (ret) {
+        if (ret.status === 'ok') {
+          if (ret.action === 'delete') {
+            vm.tasks.splice(idx, 1);
+          }
+        }
+      });
     }
   }
 }());
