@@ -6,14 +6,20 @@
     .controller('TaskDetailController', TaskDetailController);
 
   function TaskDetailController($scope, $uibModalInstance, task, $http, $timeout) {
-    var vm = this;
+    var vm = this,
+      tmp = {};
 
-    vm.task = task;
+    vm.task = angular.copy(task);
     vm.update = __update;
     vm.delete = __delete;
     vm.close = __close;
 
     function __update() {
+      __reset();
+      $http.post('/api/task/update/' + task._id, vm.task).then(function (response) {
+        vm.modified = false;
+        angular.extend(task, response.data);
+      });
     }
 
     vm.DELETE = 'Delete';
@@ -38,19 +44,29 @@
       $scope.$dismiss('close');
     }
 
+    function __reset() {
+      for (var key in vm.editable) {
+        if (vm.editable.hasOwnProperty(key) && vm.editable[key]) {
+          vm.task[key] = task[key];
+          vm.editable[key] = false;
+        }
+      }
+    }
+
     vm.editable = {
-      taskname: false,
-      project: false,
+      taskName: false,
+      projectBelongs: false,
       description: false,
       value: false,
       pluses: false,
-      tasktype: false
+      taskType: false
     };
     vm.modified = false;
     vm.types = ['code', 'document'];
     vm.edit = __edit;
     vm.confirm_edit = __confirm_edit;
     vm.cancel_edit = __cancel_edit;
+    vm.add_a_plus = __add_a_plus;
 
     function __edit(id) {
       vm.editable[id] = true;
@@ -63,6 +79,14 @@
 
     function __cancel_edit(id) {
       vm.editable[id] = false;
+      vm.task[id] = task[id];
+    }
+
+    function __add_a_plus() {
+      vm.task.pluses.push({
+        description: '',
+        value: 0
+      });
     }
   }
 }());

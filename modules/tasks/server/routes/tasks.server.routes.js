@@ -8,5 +8,8 @@ module.exports = function(app) {
 
   app.route('/api/task/create').post(tasks.create);
   app.route('/api/task/delete/:taskID').delete(tasks.delete);
+  app.route('/api/task/update/:taskID').post(tasks.update);
+
+  app.param('taskID', tasks.taskByID);
 };
 

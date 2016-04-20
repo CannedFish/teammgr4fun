@@ -1,6 +1,7 @@
 'use strict';
 
 var path = require('path'),
+  _ = require('lodash'),
   mongoose = require('mongoose'),
   Task = mongoose.model('Task'),
   User = mongoose.model('User'),
@@ -72,5 +73,36 @@ exports.delete = function(req, res) {
 };
 
 exports.update = function(req, res) {
+  var task = req.task;
+  if (task) {
+    task = _.extend(task, req.body);
+    task.save(function (err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json(task);
+    });
+  }
+};
+
+exports.taskByID = function(req, res, next, id) {
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'Task is invalid'
+    });
+  }
+
+  Task.findOne({ _id: id }, function(err, task) {
+    if (err) {
+      return next(err);
+    } else if (!task) {
+      return next(new Error('Failed to load Task ' + id));
+    }
+
+    req.task = task;
+    next();
+  });
 };
 
