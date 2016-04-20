@@ -54,7 +54,7 @@
       <div id="pluses" class="text-center" style="margin-bottom:6px">
         <button class="btn btn-info btn-xs" ng-click="add_a_plus()" ng-disabled="!vm.editable['pluses']">Add a plus</button>
       </div>
-      <div ng-repeat="plus in task.pluses">
+      <div ng-repeat="plus in vm.task.pluses">
         <input class="form-control" type='text' style="width:80%;display:inline" ng-model="vm.task.pluses[$index].description" placeholder="Description" ng-disabled="!vm.editable['pluses']">
         <input class="form-control" type='text' style="width:19%;display:inline" ng-model="vm.task.pluses[$index].value" placeholder="Value" ng-disabled="!vm.editable['pluses']">
       </div>

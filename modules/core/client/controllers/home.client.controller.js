@@ -30,7 +30,7 @@
         createTaskModal.result.then(function (task) {
           console.log(task);
           $http.post('/api/task/create', task).then(function(response) {
-            $scope.tasks.push(response);
+            $scope.tasks.push(response.data);
           });
         }, function () {
           console.log('Modal dismissed at: ' + new Date());
