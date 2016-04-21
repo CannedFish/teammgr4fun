@@ -19,6 +19,19 @@ exports.list = function(req, res) {
   });
 };
 
+exports.listByStatus = function(req, res) {
+  var status = req.taskStatus;
+  Task.find({ status: status }).populate('createdBy', 'username').exec(function(err, tasks) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    res.json(tasks);
+  });
+};
+
 exports.listByAuthor = function(req, res) {
   var userID = req.params.userID;
   Task.find({ createdBy: userID }).exec(function(err, tasks) {
@@ -58,18 +71,20 @@ exports.create = function(req, res) {
 };
 
 exports.delete = function(req, res) {
-  var taskID = req.params.taskID;
-  Task.remove({ _id: taskID }, function(err) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+  var task = req.task;
+  if (task) {
+    task.remove(function (err) {
+      if (err) {
+        return res.status(400).send({
+          message: errorHandler.getErrorMessage(err)
+        });
+      }
+      res.json({
+        status: 'ok',
+        message: 'A task is removed.'
       });
-    }
-    res.json({
-      status: 'ok',
-      message: 'A task is removed.'
     });
-  });
+  }
 };
 
 exports.update = function(req, res) {
@@ -87,6 +102,7 @@ exports.update = function(req, res) {
   }
 };
 
+// Middlewares
 exports.taskByID = function(req, res, next, id) {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).send({
@@ -104,5 +120,24 @@ exports.taskByID = function(req, res, next, id) {
     req.task = task;
     next();
   });
+};
+
+var statusMap = {
+  notstarted: 'Not started',
+  inprogress: 'In progress',
+  pause: 'Pause',
+  completed: 'Completed',
+  terminated: 'Terminated'
+};
+
+exports.statusTrans = function(req, res, next, status) {
+  req.taskStatus = statusMap[status];
+  if (!req.taskStatus) {
+    return res.status(400).send({
+      message: 'Status is invalid'
+    });
+  }
+
+  next();
 };
 

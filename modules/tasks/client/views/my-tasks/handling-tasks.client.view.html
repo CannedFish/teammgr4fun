@@ -1,2 +1,25 @@
 <section>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Task Name</th>
+        <th>Task Type</th>
+        <th>Start Date</th>
+        <th>Due Date</th>
+        <th>Current Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="task in vm.tasks" ng-click="vm.detail($index)" role="button" tooltip-placement="top" uib-tooltip="Click for details">
+        <td>{{ task.task.taskName }}</td>
+        <td>{{ task.task.taskType }}</td>
+        <td>{{ task.startDate }}</td>
+        <td>{{ task.dueDate }}</td>
+        <td>{{ task.currentValue }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row pull-right">
+    <button type="button" class="btn btn-primary" ng-click="vm.newTask()">Commit a new Task</button>
+  </div>
 </section>

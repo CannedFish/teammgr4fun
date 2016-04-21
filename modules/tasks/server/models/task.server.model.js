@@ -36,6 +36,9 @@ var TaskSchema = new Schema({
     trim: true,
     default: '--'
   },
+  updated: {
+    type: Date
+  },
   description: {
     type: String,
     required: 'Please fill in a description'

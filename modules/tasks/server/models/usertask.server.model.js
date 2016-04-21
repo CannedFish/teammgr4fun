@@ -37,9 +37,12 @@ var UserTaskSchema = new Schema({
     type: Date,
     required: 'Please fill in the start Date'
   },
-  completeDate: {
+  dueDate: {
     type: Date,
-    required: 'Please fill in the complete Date'
+    required: 'Please fill in the due Date'
+  },
+  completeDate: {
+    type: Date
   },
   currentValue: {
     type: Number,
