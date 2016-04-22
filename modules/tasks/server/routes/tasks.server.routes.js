@@ -9,8 +9,9 @@ module.exports = function(app) {
   app.route('/api/tasks/:status').get(tasks.listByStatus);
   app.route('/api/:userID/tasks').get(tasks.listByAuthor);
   app.route('/api/task/create').post(tasks.create);
-  app.route('/api/task/delete/:taskID').delete(tasks.delete);
-  app.route('/api/task/update/:taskID').post(tasks.update);
+  app.route('/api/task/:taskID').get(tasks.populateTaskByID);
+  app.route('/api/task/:taskID').delete(tasks.delete);
+  app.route('/api/task/:taskID').put(tasks.update);
 
   // APIs for tasks handling
   app.route('/api/:userID/handling').get(handling.listByResovler);

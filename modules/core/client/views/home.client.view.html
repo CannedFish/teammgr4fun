@@ -1,6 +1,6 @@
 <!--section ng-controller="HomeController"-->
 <section>
-  <table class="table table-striped">
+  <table class="table table-hover">
     <thead>
       <tr>
         <th>Task Name</th>
@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="task in vm.tasks">
+      <tr ng-repeat="task in vm.tasks", role='button', ng-click="vm.detail($index)">
         <td>{{ task.taskName }}</td>
         <td>{{ task.createdBy.username }}</td>
         <td>{{ task.projectBelongs }}</td>

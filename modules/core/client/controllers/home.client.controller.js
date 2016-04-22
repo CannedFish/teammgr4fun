@@ -5,9 +5,9 @@
     .module('core')
     .controller('HomeController', HomeController);
 
-  HomeController.$inject = ['$scope', '$http', '$uibModal', 'Authentication', 'UserNotLogin'];
+  HomeController.$inject = ['$scope', '$http', '$state', '$uibModal', 'Authentication', 'UserNotLogin'];
 
-  function HomeController($scope, $http, $uibModal, Authentication, UserNotLogin) {
+  function HomeController($scope, $http, $state, $uibModal, Authentication, UserNotLogin) {
     var vm = this;
 
     $http.get('/api/tasks/notstarted').then(function(response) {
@@ -17,7 +17,8 @@
     vm.user = Authentication.user;
     vm.showModal = showModal;
     vm.handle = handle;
-    vm.login = vm.user ? true : false;
+    vm.login = !!vm.user;
+    vm.detail = detail;
 
     function showModal() {
       if (!vm.authentication.user) {
@@ -56,6 +57,11 @@
       $http.post('/api/task/handle/' + task._id, data).then(function(response) {
         vm.tasks.splice(idx, 1);
       });
+    }
+
+    function detail(idx) {
+      var taskID = vm.tasks[idx]._id;
+      $state.go('detail', { taskID: taskID });
     }
   }
 }());

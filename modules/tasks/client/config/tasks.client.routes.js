@@ -40,6 +40,26 @@
         data: {
           pageTitle: 'Solved Tasks'
         }
+      })
+      .state('detail', {
+        url: '/task/:taskID',
+        templateUrl: 'modules/tasks/client/views/detail-page.client.view.html',
+        controller: 'DetailPageController',
+        controllerAs: 'vm',
+        resolve: {
+          taskResolve: getTask
+        },
+        data: {
+          pageTitle: '{{ taskResolve.taskName }}'
+        }
       });
+  }
+
+  getTask.$inject = ['$stateParams', 'TasksServices'];
+
+  function getTask($stateParams, TasksServices) {
+    return TasksServices.get({
+      taskID: $stateParams.taskID
+    }).$promise;
   }
 }());

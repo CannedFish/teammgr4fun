@@ -5,7 +5,7 @@
     .module('tasks')
     .controller('TaskDetailController', TaskDetailController);
 
-  function TaskDetailController($scope, $uibModalInstance, task, $http, $timeout) {
+  function TaskDetailController($scope, $uibModalInstance, task, $http, $timeout, TasksServices) {
     var vm = this,
       tmp = {};
 
@@ -16,9 +16,9 @@
 
     function __update() {
       __reset();
-      $http.post('/api/task/update/' + task._id, vm.task).then(function (response) {
+      TasksServices.update({ taskID: task._id }, vm.task, function (response) {
         vm.modified = false;
-        angular.extend(task, response.data);
+        angular.extend(task, response);
       });
     }
 
@@ -26,7 +26,7 @@
     function __delete() {
       if (vm.DELETE === 'Sure?') {
         $timeout.cancel();
-        $http.delete('/api/task/delete/' + task._id).then(function (response) {
+        TasksServices.delete({ taskID: task._id }, function (response) {
           $scope.$close({
             action: 'delete',
             status: 'ok'

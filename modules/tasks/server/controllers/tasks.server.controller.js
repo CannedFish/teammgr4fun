@@ -70,6 +70,19 @@ exports.create = function(req, res) {
   });
 };
 
+exports.populateTaskByID = function(req, res) {
+  var task = req.task;
+  if (task) {
+    User.populate(task, { path: 'createdBy', select: 'username' }).then(function(task) {
+      res.json(task);
+    }, function(err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    });
+  }
+};
+
 exports.delete = function(req, res) {
   var task = req.task;
   if (task) {
