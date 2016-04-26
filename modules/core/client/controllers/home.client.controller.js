@@ -21,7 +21,7 @@
     vm.detail = detail;
 
     function showModal() {
-      if (!vm.authentication.user) {
+      if (!vm.user) {
         UserNotLogin.hint();
       } else {
         var createTaskModal = $uibModal.open({

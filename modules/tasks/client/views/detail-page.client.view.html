@@ -1,6 +1,23 @@
 <section>
-  <div>{{ vm.task.taskName }}</div>
-  <div>{{ vm.task.createdBy }}</div>
-  <div>{{ vm.task.value }}</div>
-  <div>{{ vm.task.taskType }}</div>
+  <table class="table">
+    <tbody>
+      <tr>
+        <td><h1>{{ vm.task.taskName }}</h1></td>
+        <td class="text-right">
+          <h4>
+            Commited by 
+            <button type="button" class="btn btn-lg btn-link">{{ vm.task.createdBy.username }}</button>
+          </h4>
+        </td>
+      </tr>
+      <tr>
+        <td>{{ vm.task.value }}</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>{{ vm.task.taskType }}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 </section>
